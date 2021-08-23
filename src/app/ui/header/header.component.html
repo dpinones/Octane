@@ -1,0 +1,11 @@
+<div *ngIf="connect">
+  <h1 style="display: inline;">{{acortar(account)}}</h1>
+  <button mat-raised-button 
+      (click)="disconnectToMetamask()">
+      Disconnect
+        </button>
+</div>
+
+<button *ngIf="!connect" mat-raised-button  (click)="connectToMetamask()">
+  Connect Wallet
+</button>

@@ -1,0 +1,36 @@
+<h1>Balance <strong>{{balance}} ETHER</strong></h1>
+<!-- <h1>Mis Id Reservas <strong>{{misIdReservas}}</strong></h1> -->
+<h1>My Reservations</h1>
+<table>
+    <tr *ngFor="let idReserva of misIdReservas">
+      <td>
+        <h1>ID: <strong>{{idReserva}}</strong></h1>
+      </td>
+      <td>
+      <button mat-raised-button color="accent"
+      (click)="getReservation(idReserva)">
+         Detail
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <mat-card *ngIf="reservation" class="example-card">
+    <mat-card-header>
+      <mat-card-title>Reservation: {{idReserva}}</mat-card-title>
+      <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+    </mat-card-header>
+    <mat-card-content>
+      <p>User: <strong>{{reservation.user}}</strong></p>
+      <p>Year: <strong>{{reservation.schedule.year}}</strong></p>
+      <p>Month: <strong>{{reservation.schedule.month}}</strong></p>
+      <p>Day: <strong>{{reservation.schedule.day}}</strong></p>
+      <p>Hour: <strong>{{reservation.schedule.hour}}</strong></p>
+      <p>Price: <strong>{{toEth(reservation.price)}}</strong></p>
+      <p>Discount: <strong>{{reservation.discount}}</strong></p>
+      <p>State: <strong>{{reservation.state == 0 ? 'VALID' : 'INVALID'}}</strong></p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="cancel()">CANCEL</button>
+    </mat-card-actions>
+  </mat-card>

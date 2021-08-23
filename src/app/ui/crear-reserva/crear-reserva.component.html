@@ -1,0 +1,43 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-atom" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<button style="margin-top: 10px;" mat-raised-button color="accent"
+routerLink="../account">
+My Reservations
+        </button>
+<button style="margin-top: 10px;" mat-raised-button color="accent"
+(click)="withdraw()">
+Withdraw
+        </button>
+<h1>Balance <strong>{{balance}} ETHER</strong></h1>
+
+<h2>Open <strong>{{ minimumHour }}.00 HS</strong></h2>
+<h2>Closed <strong>{{ maximumHour }}.00 HS</strong></h2>
+<h2>Hour Value <strong>{{ hourValue }} ETHER</strong></h2>
+
+
+<h2 style="display: inline;">Select day: </h2>
+<mat-form-field appearance="fill">
+  <input matInput [matDatepicker]="picker" [(ngModel)]="daySelected" [min]="minDate" (dateChange)="updateReservations()">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<table>
+    <tr *ngFor="let reservation of dayReservations; index as i">
+      <td>
+        <h1>{{ reservation.label }}</h1>
+      </td>
+      <td>
+      <button mat-raised-button [style.background-color] ="reservation.colour"
+      (click)="selectReservation(reservation, i)">
+         {{ reservation.stateLabel }}
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <mat-form-field style="display: block;" appearance="fill">
+    <mat-label>Amount in ETHER</mat-label>
+    <input matInput placeholder="0.5 ETHER" [(ngModel)]="amount">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="confirm()">Confirm</button>
